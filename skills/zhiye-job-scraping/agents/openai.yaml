@@ -1,0 +1,6 @@
+interface:
+  display_name: "Zhiye Job Scraping"
+  short_description: "抓取北森/Zhiye 招聘门户职位"
+  default_prompt: "Use $zhiye-job-scraping to extract all jobs from this Zhiye recruitment portal."
+policy:
+  allow_implicit_invocation: true

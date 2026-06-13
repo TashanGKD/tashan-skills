@@ -1,0 +1,4 @@
+interface:
+  display_name: "XHS Tech Publishing"
+  short_description: "Build publishable Chinese technical post packages and 3:4 infographic workflows."
+  default_prompt: "Use this skill to prepare or refine a Xiaohongshu technical post package."

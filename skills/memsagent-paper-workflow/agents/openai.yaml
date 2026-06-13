@@ -1,0 +1,4 @@
+interface:
+  display_name: "MEMSAgent Paper Workflow"
+  short_description: "Maintain the MEMSAgent Sensors Journal article.md to TeX/BibTeX workflow."
+  default_prompt: "Use this skill to draft, edit, or compile the MEMSAgent Sensors Journal manuscript."

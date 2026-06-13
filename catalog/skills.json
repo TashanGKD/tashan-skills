@@ -1,0 +1,973 @@
+{
+  "skills": [
+    {
+      "name": "ai-claims-adjustment-semantic-layer",
+      "path": "skills/ai-claims-adjustment-semantic-layer",
+      "description": "Use when answering Data Analytics questions about the AI-assisted motor insurance claims-adjustment opportunity, including TPA workflow context, required data, evaluation metrics, source gaps, and caveats.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "b8160e749d5f4a447956c695ecc3626384d6fabd10a308a7905752783b12f04f"
+        },
+        {
+          "path": "references/semantic-layer.md",
+          "sha256": "1d5bee90e75865c76c17d853d91fb5ead272cdfe7780465b7f7562aafda5ad9c"
+        },
+        {
+          "path": "references/source-inventory.md",
+          "sha256": "8a46e8e9316a2f7f1d27a8455af32988e6fc2497ee86a87f85d0d13a627a9e23"
+        }
+      ]
+    },
+    {
+      "name": "aminer-academic-search",
+      "path": "skills/aminer-academic-search",
+      "description": "ACADEMIC PRIORITY: Activate this skill whenever the user's query involves academic, scholarly, or research-related topics — including but not limited to: papers, publications, citations, scholars, researchers, professors, institutions, universities, labs, journals, conferences, venues, patents, research fields, h-index, impact factor, co-authorship, dissertations, theses, peer review, grant projects, research trends, or any question about \"who published what / where / when\". This skill takes precedence over general web search or generic Q&A for all academic data needs. Full-featured AMiner skill with 27 APIs and 5 workflows. Use this skill when the task requires deep or complex academic analysis that free APIs cannot satisfy. Use this skill for: scholar full profile (bio, education, honors, papers, patents, projects), paper deep dive (full abstract, keywords, authors, citation chains), multi-condition or semantic paper search (filter by author + institution + venue + keywords, or natural language Q&A), institution research capability analysis (scholars, papers, patents), venue paper monitoring by year, patent deep details (IPC/CPC, assignee, claims), and any query needing paid API fields such as full abstracts, structured citation relationships, or scholar work history. Do NOT use this skill for simple lookups that free APIs can answer — such as checking a paper title, identifying a scholar by name, normalizing an institution or venue name, or scanning patent trends by keyword. For those, use aminer-free-academic instead. Routing rule: if the user's question can be fully answered by paper_search, paper_info, person_search, organization_search, venue_search, patent_search, or patent_info alone, route to aminer-free-academic. Otherwise use this skill.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "1d8f3da21b2aaaf453890f57b39dcbd67b7c84a69a239b6efc203949af1b17b4"
+        },
+        {
+          "path": "evals/evals.json",
+          "sha256": "6b7e29c837dac3f6ba6a96ebf38049e0ad72e7ac5487185be7aa135e2aee7100"
+        },
+        {
+          "path": "references/api-catalog.md",
+          "sha256": "abf357294ed77971625393309501d8afbbb5803b0fb840dd8e45931ab7f6afd4"
+        },
+        {
+          "path": "scripts/aminer_client.py",
+          "sha256": "ea56a15b06f369d5f1e2dc7fc0cac1711b4d323a12e37bf8e75bc8186ca7ee06"
+        }
+      ]
+    },
+    {
+      "name": "aminer-daily-paper",
+      "path": "skills/aminer-daily-paper",
+      "description": "Personalized academic paper recommendation via AMiner rec5 API. Activate this skill whenever the user asks for paper recommendations, whether triggered by /aminer-dp, /skill aminer-dp, or any natural language request such as 'recommend me papers on multimodal agents'. When invoked: extract topics/scholar signals from the input yourself, call handle_trigger.py with structured fields, then present the Markdown in `reply_text` to the user.",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "375385c47193c3089adee3046a9a16913d2825a1259ed30366f729f1c5e8da9a"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "c78fd16fa4b56656cdffbfe9da3142ad5702ab3b359b050c4303ddd0c2d92354"
+        },
+        {
+          "path": "commands/aminer-dp.md",
+          "sha256": "e0090b975b1d5638b679ae57630e591b004da0d6dfdac5d9f73d5e491b360403"
+        },
+        {
+          "path": "prompts/enrich.md",
+          "sha256": "063113310b2ccd8f383a46bb8675f0fa73f55075133ab14cd89c1d60e4b980f9"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "71749243f84428fee225bfaa796dca5ef6c1e83a98f6d2a407df615b0390d6fb"
+        },
+        {
+          "path": "scripts/__init__.py",
+          "sha256": "1d26a3005d2a222035c9142672d077d7af90589e1c48643f6811638a1c42a904"
+        },
+        {
+          "path": "scripts/common.py",
+          "sha256": "d1114040ba47e8995d43f4a211cbf8d603e9e45338fbda2af9496d281bb381ca"
+        },
+        {
+          "path": "scripts/constants.py",
+          "sha256": "4e65744815e2977912c29849d60d7bc1e9f24edf6cc8ee615c2c5c43162d58e6"
+        },
+        {
+          "path": "scripts/handle_trigger.py",
+          "sha256": "0c90beefb0f86930ecb08049146da574a6619f9922dc8ab8297f6606e6a1c830"
+        },
+        {
+          "path": "scripts/rec5_api.py",
+          "sha256": "1edb1211b92746b178cd56b9dfe95797ec6251a11787a1660381a3e2c6a34e0b"
+        },
+        {
+          "path": "scripts/run_pipeline.py",
+          "sha256": "c0a4af3aa8a0c56ed849a16d3cb62610bf58e320dc27b141cce54487735af272"
+        }
+      ]
+    },
+    {
+      "name": "aminer-deep-search",
+      "path": "skills/aminer-deep-search",
+      "description": "Activate this skill when the user wants deep, multi-round academic paper collection for a survey or literature review using AMiner data and a ReAct-style LLM controller. Use this skill for broad topic exploration, survey bibliography construction, automatic keyword search plus backward-reference snowballing, and collecting hundreds of candidate papers with AMiner IDs and titles. This skill calls an OpenAI-compatible chat model to decide tool calls, and uses AMiner keyword search plus paper reference APIs as tools. It is not intended for simple single-paper lookup or lightweight recommendations; use aminer-free-academic or aminer-daily-paper for those simpler tasks.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "187e86a80eb615fa29cccfaa7bf3c62531d23d0a0e3cddb5dc0141353a8f8656"
+        },
+        {
+          "path": "_utils.py",
+          "sha256": "3fdf7bfd0359c3a3ea8f1c80f3adfb2066d801e3dabbb0bd3a92bd470b044e26"
+        },
+        {
+          "path": "api_client.py",
+          "sha256": "f6865b27c428643867e8dc7352690f71486ead72a28e34da8d2b153aa99f40f2"
+        },
+        {
+          "path": "citation.py",
+          "sha256": "33ecdf3fd966699aa9e166d7d84a6e26674dcaad7b0d7e4dc9fdc41035d8a7a0"
+        },
+        {
+          "path": "commands/aminer-deep-search.md",
+          "sha256": "1b374bdc4f7d6d8f81d42784ace9dfac1e839586c12aae83675aec732c344462"
+        },
+        {
+          "path": "environment.yml",
+          "sha256": "0ac00c6d1dfd4fda4592a9c8beabde88bb9380f372387dc61c5cc8d3e1a521ac"
+        },
+        {
+          "path": "paper_set.py",
+          "sha256": "35fee4b284aa54eef6c2df13401c57ab182d3cc221a49e5da2c66773c09172df"
+        },
+        {
+          "path": "prompt.py",
+          "sha256": "53067fece9b57bb64a80f7c97f213b770c96693caae8631996a9270aceb01458"
+        },
+        {
+          "path": "react_agent.py",
+          "sha256": "b86d172ecd2fe741aef6e75845a44583387d3ba4f27aee0f1074b12497e04944"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "b31e63824612176ae8767335a3c468a116d37982df4a89f811a597a20408ebea"
+        },
+        {
+          "path": "search.py",
+          "sha256": "7c0b0a4c0302394736fc2d0c5705d431cfd8bd1ffeda8c239d95fb375818a15a"
+        }
+      ]
+    },
+    {
+      "name": "aminer-free-academic",
+      "path": "skills/aminer-free-academic",
+      "description": "ACADEMIC PRIORITY: Activate this skill whenever the user's query involves any academic or research-related topic. This is the free-tier entry point for AMiner academic search. Free-tier-only AMiner skill (7 free APIs, zero cost). Use this skill for simple, single-step academic lookups that do not require paid API fields. Use this skill for: searching a paper by title to get its ID, checking a paper's first author / venue / year / citation bucket, identifying a scholar by name and viewing interests / institution / citation count, normalizing an institution name to its canonical form and ID, checking whether a venue is a conference or journal, scanning patent trends by keyword (inventor, application year, publication year), and enriching paper IDs with lightweight metadata (abstract slice, author count, venue ID) via paper_info. Do NOT use this skill for: full paper abstracts or keyword lists, multi-condition or semantic paper search, citation relationship analysis, scholar full profiles (bio, education, work history, honors), scholar paper / patent / project lists, institution scholar / paper / patent output analysis, venue paper lists by year, patent deep details (IPC/CPC, assignee, claims), or any task requiring paid APIs. Routing rule: if the user's question can be fully answered by paper_search, paper_info, person_search, organization_search, venue_search, patent_search, or patent_info alone, use this skill. Otherwise route to aminer-academic-search.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "1f54f2118df87f31d8655cb14f75cc68da76cf133d850ec966819bf9b1c41796"
+        },
+        {
+          "path": "evals/evals.json",
+          "sha256": "b2c1fd74ae5b3d0ec179e7f647b89bf796d5ab036b7a189c6e3b5305f11992c4"
+        },
+        {
+          "path": "references/api-catalog.md",
+          "sha256": "be953299166c43aa3c9a58dd199eec257aeb4afb46b5815e162f2ad38e37370a"
+        }
+      ]
+    },
+    {
+      "name": "aminer-pdf-citation-verifier",
+      "path": "skills/aminer-pdf-citation-verifier",
+      "description": "[Activation] Use this skill when the user provides a paper PDF (file path or upload) and asks to verify, audit, or fact-check its references / citations / bibliography — e.g. \"check whether the references in this PDF are hallucinated\", \"find fake citations\", \"verify the bibliography\". [Capability] Uploads the PDF to the AMiner pdf-citation-verifier service, polls the asynchronous job, and returns a per-reference classification (REAL / LIKELY_REAL / NEEDS_REVIEW / LIKELY_FAKE / FAKE) plus an overall hallucination summary. [Routing] Do NOT use for general paper search, scholar lookup, citation-intent analysis, or building a citation graph — use aminer-academic-search, aminer-free-academic, or paper-source-trace instead. This skill only verifies whether references actually exist.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "390ecb26efd2ec636bef35e4f958f5a03212e5682f86809262ceab8b0ffe87cf"
+        },
+        {
+          "path": "SKILL.zh.md",
+          "sha256": "d0c4e1a248ec93ad37ffedcba8d16b909dba431f4b585b16f32937f29a67c6f2"
+        },
+        {
+          "path": "commands/pdf-citation-verifier.md",
+          "sha256": "96f69f69d3ea6c2cb92e61332540524c3ce3c080eb1c1b5363afb53a21077a41"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "ed73ba11243a0099034f10ac500db984959bb8f37086532f864d75a3620916c8"
+        },
+        {
+          "path": "scripts/verify_pdf.py",
+          "sha256": "2986882d9e99d4a07cd68d502e39db06ee5b606f8bb27110a5f9c37bd95a9c0f"
+        }
+      ]
+    },
+    {
+      "name": "bp-deck-visual-workflow",
+      "path": "skills/bp-deck-visual-workflow",
+      "description": "Use when creating or refining BP/PPT/WPS visual assets, slide backgrounds, Chinese concept graphics, slide-master assets, or layout-flexible presentation imagery in ~/Documents/bp.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "8f7a3101c6f8a0e53aecd5eace98298715c86468aae985350dde121dc418d4fe"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "5ffb94d576fae9514b9b3bfba125cd141778a275d174c3ccfeb3bc07b14cfe1b"
+        }
+      ]
+    },
+    {
+      "name": "chinese-thesis-docx-workflow",
+      "path": "skills/chinese-thesis-docx-workflow",
+      "description": "Use when working on Chinese thesis, proposal, opening-report, dissertation, academic-review, or Word DOCX workflows that require structured academic writing, iterative versioned editing, citation renumbering, reference cleanup, figure/table captions, technical-route diagrams, defense-review records, supervisor/group comments, or formatting/logic cleanup. Especially use for `.docx` files, Chinese graduate reports, 开题报告, 学位论文, 考核记录, 导师意见, 小组意见, and bibliography/order normalization.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "954bf0ef0fe3f939dadd334097eea6c08a3f9401f50d76718a8184c8476a007a"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "181a756069a1df254f80c28e3d25daa7cb3bdb306523b5215e2b0d607270d5f5"
+        },
+        {
+          "path": "references/citations.md",
+          "sha256": "c5e3739acd5a68499b22a3c0ac43506cd37e41afc01c7b84a233bb6016d3d766"
+        },
+        {
+          "path": "references/expression.md",
+          "sha256": "17d9c98956a9d0df86e1b620bdd9f10d429b34a6aea37b51cfe612b1280dbfd4"
+        },
+        {
+          "path": "references/figures.md",
+          "sha256": "a997fe22d4be9f96250d55792ba29f843f1af1b82f85b577aae5666a34299d66"
+        },
+        {
+          "path": "references/review-records.md",
+          "sha256": "34305561dc2fd093b9db87dde6716539a1f6949d5f780284822c6775e691c4b0"
+        },
+        {
+          "path": "references/versioning.md",
+          "sha256": "47c5e0cd05d736e5828146ddf7904c4109b644df899a5442a76fb715c86aa8b2"
+        },
+        {
+          "path": "references/writing-and-structure.md",
+          "sha256": "2f8980fe96550f26be2840e8b2d0234820db8a9418e703bbdec38694586a7add"
+        },
+        {
+          "path": "scripts/check_version_index.py",
+          "sha256": "291a80c2ce332303a4f5abc4d1a69385fc34041d9c78580b6af0a2408e5058a7"
+        },
+        {
+          "path": "scripts/compare_docx_text.py",
+          "sha256": "b90d6ce2c85df37cf8680d86945a2357afe8ae535408a3eefe77e3f5f27ed857"
+        },
+        {
+          "path": "scripts/extract_docx_text.py",
+          "sha256": "7d17f6ff6cec38fe2d482535d53667ff08e3c7e96f60134a1be1d66993cc3060"
+        },
+        {
+          "path": "scripts/renumber_docx_citations.py",
+          "sha256": "08099a7e58218012521c29077506134139a5470ebf74c3bcc243ce9c241fa9d7"
+        }
+      ]
+    },
+    {
+      "name": "chronicle",
+      "path": "skills/chronicle",
+      "description": "Allows you to view the user's screen as well as several hours of history. Use when the user makes a reference to their recent work, for which it'd be helpful to see the screen. This skill MUST be used whenever you need to resolve ambiguity in a user request, where the user hasn't specified enough context to do the task. Examples include disambiguating the specific user/app/document/error the user is referring to. You must also use this skill if the user asks about any question regarding Chronicle or asks what you can see from the screen.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "515a7de3ec6ef878521b9a87dc888fc24bb25d5b67e04b9c1850d448954e2a55"
+        }
+      ]
+    },
+    {
+      "name": "desktop-cache-cleanup",
+      "path": "skills/desktop-cache-cleanup",
+      "description": "Use when cleaning macOS workspace disk caches, Docker build cache, package-manager caches, Feishu storage, or rerunning the user's weekly cache cleanup workflow on ~/Desktop/workspace.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "bb25777b2a440176a7d040ab87dc3b235b20d415d659c363d9bdf94ce53cbda7"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "551e211ece11607dc264db9ffcbd3529b2b201e81cd7bbc584a1e7031f69773f"
+        }
+      ]
+    },
+    {
+      "name": "doc",
+      "path": "skills/doc",
+      "description": "Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "0a635585817d1ac96e8e512114d08258b70f9e54ce0052078a258291ac13a8ed"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "b77d452b23dfa0bef7788728317254f07bddcd5f2be1d6678d5c3cf754b833ae"
+        },
+        {
+          "path": "assets/doc-small.svg",
+          "sha256": "bd5415fbbfe72c66c1527411d61625731fdd2f75b25d1542510b6ddef699ebe0"
+        },
+        {
+          "path": "assets/doc.png",
+          "sha256": "7eadf1088e5062f681dba6596173a1df13bbfbcddd8a8a9bb78fd2071947dcf8"
+        },
+        {
+          "path": "scripts/render_docx.py",
+          "sha256": "52b3c3158913ebcad2ada7b8193970b70453239e255054aa2d60c1683af08751"
+        }
+      ]
+    },
+    {
+      "name": "frontend-skill",
+      "path": "skills/frontend-skill",
+      "description": "Use when the task asks for a visually strong landing page, website, app, prototype, demo, or game UI. This skill enforces restrained composition, image-led hierarchy, cohesive content structure, and tasteful motion while avoiding generic cards, weak branding, and UI clutter.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "b87a529a13d5294f97bb847936a82f39e4f8adae2425a3a5fb5f1a7b75d43e6a"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "d367b2d22825d74c169475507e7ff109b81c1e9c20b2de3421fb19fcfbe3329b"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "e12288464311eeedcec370bf7625081b3bfb429ffe4c5d34acc9cf4bfd89db79"
+        }
+      ]
+    },
+    {
+      "name": "hatch-pet",
+      "path": "skills/hatch-pet",
+      "description": "Create, repair, validate, preview, and package Codex-compatible animated pets and pet spritesheets from character art, screenshots, generated images, or visual references. Use when a user wants to hatch a Codex pet, create a custom animated pet, or build a built-in pet asset with an 8x9 atlas, transparent unused cells, row-by-row animation prompts, QA contact sheets, preview videos, and pet.json packaging. This skill composes the installed $imagegen system skill for visual generation and uses bundled scripts for deterministic spritesheet assembly.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "f53553b41ee9d315d46b1290ed3f110b40c9bcb51fde506a9951d93d96f0cea8"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "cc77c6595bc36666d76204479e735fc1468ec7fd1611e143b803e7e35751a0cf"
+        },
+        {
+          "path": "references/animation-rows.md",
+          "sha256": "2c2916c387284ca910e932e8cad87791a15ec79a7e5f7f4da13baf9b671a7591"
+        },
+        {
+          "path": "references/codex-pet-contract.md",
+          "sha256": "ce9a9d2cef4d9cdb16c3ae53c106681d98b8ae3919a56fe74323f6f88a06f90d"
+        },
+        {
+          "path": "references/qa-rubric.md",
+          "sha256": "ccede493195efd50e895e0b3fce2ae8e06e1f3cbd191951687da16a097a3c64a"
+        },
+        {
+          "path": "scripts/compose_atlas.py",
+          "sha256": "7f597371db46648301def265a6bb2c1fb028e677eb7bd421354d0507e5750bbe"
+        },
+        {
+          "path": "scripts/derive_running_left_from_running_right.py",
+          "sha256": "374db1637356294fe5b1e578d67aa8568b83e385628ca3abb21c9394bcddeb4e"
+        },
+        {
+          "path": "scripts/extract_strip_frames.py",
+          "sha256": "66aeb5e34f9c2053c134dfe1976bf7526ec644fb684780a949fbac022b57542c"
+        },
+        {
+          "path": "scripts/finalize_pet_run.py",
+          "sha256": "195f72fda30cbf65f5b46da146d892b4bf09532a8dadc60c0c686373d86bbd48"
+        },
+        {
+          "path": "scripts/generate_pet_images.py",
+          "sha256": "9f1ea6cd6691658b81d62c19895ee17abf35df9f584bdb8975c7193166172f7a"
+        },
+        {
+          "path": "scripts/inspect_frames.py",
+          "sha256": "57a465db393f339f246a5b97f3ca09e9d5f4ff815806f3fd94717464682b7e19"
+        },
+        {
+          "path": "scripts/make_contact_sheet.py",
+          "sha256": "28ab6f17909dd471ba6c9529b343fd9303ec9e35c551ceac23c98808224e701c"
+        },
+        {
+          "path": "scripts/package_custom_pet.py",
+          "sha256": "91aef33237966c745738c69f72d62bc71bb0b9b6aad8e78570cc709263deeed9"
+        },
+        {
+          "path": "scripts/pet_job_status.py",
+          "sha256": "f559db64534e2fa6e80397cb4f90bc4ef08cd04f6f480dbd75b547b1e7990439"
+        },
+        {
+          "path": "scripts/prepare_pet_run.py",
+          "sha256": "012b36ff2fb190c91e43b0949992684706781f09cf158fa314df1f6a8e985bae"
+        },
+        {
+          "path": "scripts/queue_pet_repairs.py",
+          "sha256": "7de982fefe7d1b28f67f936995688e79799e3ecd64a9cec1d03e84fcff0cd6b3"
+        },
+        {
+          "path": "scripts/record_imagegen_result.py",
+          "sha256": "a9f5783b0c224780404955eae303cbc0722b26f5f929c3766d8f95e17d7751a4"
+        },
+        {
+          "path": "scripts/render_animation_videos.py",
+          "sha256": "ac779c53550bae84aee216a29914d090beb85ece3c216c7323d87f6a9d4adfc3"
+        },
+        {
+          "path": "scripts/render_animation_videos.sh",
+          "sha256": "18368af2a9fc1f1fc37f5008ef1d18f3619dbfae3882cb743fd05b20d416d9e9"
+        },
+        {
+          "path": "scripts/validate_atlas.py",
+          "sha256": "bc987ce57c76f8c6f23d95724e243a8e9aa07a1d06a74537c45a55e6bbfba7b5"
+        }
+      ]
+    },
+    {
+      "name": "imagegen",
+      "path": "skills/imagegen",
+      "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "4da06e7a1fbfaa94154dda2699e449a1f6d79e6e4299fcfeb785aad7c87f59dc"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "051b82cce281829f36caaeacb676af013d45c5429fd824ec0eac5dcee07352fa"
+        },
+        {
+          "path": "assets/imagegen-small.svg",
+          "sha256": "cff5f34f57ff60b3ee92eaedd17b15e96dd4b9e776df3e78936c9e00d42be294"
+        },
+        {
+          "path": "assets/imagegen.png",
+          "sha256": "95952f644064eb9e890f98d8db07216347186526e4c41ad66d3420629eb86e20"
+        },
+        {
+          "path": "references/cli.md",
+          "sha256": "c548d8897fb3df3c0a0d39b42cdd7a08247706696cbedda9f1b36cb7bbf60ab7"
+        },
+        {
+          "path": "references/codex-network.md",
+          "sha256": "e0392ea43bdc6fa075ff8f842a999840e05ab025be3c217dc58791000efa5b18"
+        },
+        {
+          "path": "references/image-api.md",
+          "sha256": "a31b576864fb7ab43e3191e039a24a19cdd85d2804e44c38a822f2ed1f4f78c3"
+        },
+        {
+          "path": "references/prompting.md",
+          "sha256": "80383de47c15b2e0b014b95099cc95663497cb2ab8b0eac88d867fa2b5b208db"
+        },
+        {
+          "path": "references/sample-prompts.md",
+          "sha256": "be54f1ced28a7ac1d68670eb2d560d1491d7e0efe38972d9ba3309110f7d45e4"
+        },
+        {
+          "path": "scripts/image_gen.py",
+          "sha256": "4fadb19d5311866c6589bbef89b6aaa25bf4cdf1ed058be90cdc19d7414c4b0f"
+        }
+      ]
+    },
+    {
+      "name": "memsagent-paper-workflow",
+      "path": "skills/memsagent-paper-workflow",
+      "description": "Use when drafting, editing, or compiling the MEMSAgent IEEE Sensors Journal manuscript, bilingual article.md content, paper/main.tex, references.bib, Related Work structure, or Tectonic build workflow.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "a23a820792d1ce583a851399e9bc41b81f720e48e18980f21150ff5ab10eb5b9"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "e33f0337bed247cb1a04e6a2a2993eb9142ae8859668a4d76c9b5ea0574d3613"
+        }
+      ]
+    },
+    {
+      "name": "openai-docs",
+      "path": "skills/openai-docs",
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "100099568ce8887ccd961aad2aa824a6d6054d4e5e697625815cc6e1b30d54a7"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "a2049be7cc970cc0148509e5a262793dab45e2eca56b31cac1723d6bb6e6a805"
+        },
+        {
+          "path": "assets/openai-small.svg",
+          "sha256": "45be1f0757eb18889eefb1e7db79668ef46a275dc4e0e78e8df5ebd7f6cdeadc"
+        },
+        {
+          "path": "assets/openai.png",
+          "sha256": "156cc84d7332bfe95b310350bd470b690d22aa33d65340cc6c2e06022946194c"
+        }
+      ]
+    },
+    {
+      "name": "paper-source-trace",
+      "path": "skills/paper-source-trace",
+      "description": "Use when a user provides an academic paper PDF, extracted paper text, citation contexts, or references and asks for paper source tracing, claim-centered source tracing, citation intent extraction, entity/relation extraction, contribution mapping, citation graph JSON, SVG/HTML citation maps, or optional AMiner metadata/citation enrichment. Do NOT use this skill for simple paper lookup by title, scholar search, or lightweight academic queries — use aminer-free-academic or aminer-academic-search for those instead.",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "25c747c516a6254a33519e800240795315c35b1f4e9cc8d632f933c17fe837ef"
+        },
+        {
+          "path": "README_zh.md",
+          "sha256": "d96529a6cf05c938c03de9685f1639f78644b3b713953c734201f3d4e198864b"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "1877d9b4c827fe48bce6a1769b7976979ca1127a36b3fba3be878c6f044d582e"
+        },
+        {
+          "path": "SKILL.zh.md",
+          "sha256": "7ae6f9c613f8463f624cf51bca6c486b9acc70077a8a61407f2c5cc7d088afbb"
+        },
+        {
+          "path": "commands/paper-source-trace.md",
+          "sha256": "61ccfc01f5bcd9049dfa1f3f3c32bfa88137389321dd6a20293967f3aacf87f4"
+        },
+        {
+          "path": "evals/evals.json",
+          "sha256": "6dfdd507d293deaa991a48321a89b3fcc79eb7747c3ed74bcae36018bbd53d73"
+        },
+        {
+          "path": "references/analysis_template.md",
+          "sha256": "1ee35a59b85f4eb41fa70a0564d96f709429bc8e01577a0764bfbf21fabfd6a3"
+        },
+        {
+          "path": "references/evidence_protocol.md",
+          "sha256": "4eacea7ab0f678d6892075a947fe6f6f7726d6cdc857937d970419d3198953a6"
+        },
+        {
+          "path": "references/prompts.md",
+          "sha256": "732d27a7ca2f14cb04f4873a3cc76218e73c3c2cbc205bbd0f6ddf9cdf0fd413"
+        },
+        {
+          "path": "references/schema.md",
+          "sha256": "a4647e7104ca2b225cdd952a45e5f8cc98eaf29a3a47cc38d248ce87d7ab50d8"
+        },
+        {
+          "path": "references/visual.md",
+          "sha256": "0ef9fb0a89017cb5073970bb8d9d70fb01e9529c826efac5bf82799ddec173c1"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "3a5e2a824da5ade2e45bae737f348c1309de70dabdb6ab9cfa4a9787453b141e"
+        },
+        {
+          "path": "scripts/render_html.py",
+          "sha256": "29750dfba1c242bc3f3d5591424833c8131d6abf6e49af5f09cf5191d5dd519a"
+        }
+      ]
+    },
+    {
+      "name": "pdf",
+      "path": "skills/pdf",
+      "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "d108cf2b36355ab37eb5962933f4d09785ec002f3105c506129320209306b9d2"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "f8b223e25343559f57e1839ccd849fd1494a9729da33da04bb5074b7f80f4887"
+        },
+        {
+          "path": "assets/pdf.png",
+          "sha256": "17da356d195d4e3fa24f9becbee6b8d9e60e13005762b5ab0809c520c76da6ee"
+        }
+      ]
+    },
+    {
+      "name": "playwright",
+      "path": "skills/playwright",
+      "description": "Use when the task requires automating a real browser from the terminal (navigation, form filling, snapshots, screenshots, data extraction, UI-flow debugging) via `playwright-cli` or the bundled wrapper script.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+        },
+        {
+          "path": "NOTICE.txt",
+          "sha256": "417d5d3372914ecfd9fe102ac1d7dc2119253209f9718d6c222f616876c1904b"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "0ffaabcc8e0990627c4725f18bf1c7955534a796c1c199e872909de2013ce6a8"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "ddda43720fc566fffa45264be8f17f7745a3cee28d5245d41d3b963bc9967230"
+        },
+        {
+          "path": "assets/playwright-small.svg",
+          "sha256": "f1d213c0f76735d8272c3d3e9fbf71fe7b894e2d1588907044c780f2c33a9732"
+        },
+        {
+          "path": "assets/playwright.png",
+          "sha256": "521669f088c838196c6c852ccc9abdd7234d8f37fc9a8a7a9af7db2d50193381"
+        },
+        {
+          "path": "references/cli.md",
+          "sha256": "7c069a8206ba20b9ddbdc42436b04de30bb3aa4a825ba98680757ee62e954900"
+        },
+        {
+          "path": "references/workflows.md",
+          "sha256": "a2b5835a00ebee3906c146adf7f764f7718ea3f89a8702d86eaa135dfe0fc8c2"
+        },
+        {
+          "path": "scripts/playwright_cli.sh",
+          "sha256": "aa3fdff5d0e4556177f4dfd5f04117e772aa54f94b6a2e34b6c0edf629c6b9b5"
+        }
+      ]
+    },
+    {
+      "name": "playwright-interactive",
+      "path": "skills/playwright-interactive",
+      "description": "Persistent browser and Electron interaction through `js_repl` for fast iterative UI debugging.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+        },
+        {
+          "path": "NOTICE.txt",
+          "sha256": "7fe676d2e5359fb6aa0bdf5b0881b26e14c272dd36b04408366d4b0e26738322"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "f6c1155d923e6ae3ccc12abfef2266f119f8e9546df2ddeee1f5eb369845a0a1"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "7342e0a2c2cb8f3e20982317467f58b06c8bf71ba308ed8fcc1cda4a6e9397d8"
+        },
+        {
+          "path": "assets/playwright-small.svg",
+          "sha256": "0744d0d4cc1433e2130c3522196e1571222d502f1461f39274f680520e728588"
+        },
+        {
+          "path": "assets/playwright.png",
+          "sha256": "29b51cdeeb4e541565d1d419e5150e11913af50f72ebb4d27cfcc8813185ffd6"
+        }
+      ]
+    },
+    {
+      "name": "pre-pp",
+      "path": "skills/pre-pp",
+      "description": "Pre Pitch Practice — 路演PPT迭代助手 在正式 PP 评估之前，帮助创始人从零到一制作/迭代路演 deck。 支持：大纲生成、PPT 制作（飞书Slides/PDF/PPTX/HTML）、逐页打磨、视觉优化。 默认输出飞书 Slides（云端渲染，字体无忧，在线协作）。 当用户提到\"做PPT\"、\"改PPT\"、\"迭代deck\"、\"准备路演材料\"、\"pre PP\"时触发。",
+      "files": [
+        {
+          "path": ".git",
+          "sha256": "fa0a77a34f250b4758162a363fbaf2291d816f72332b56ecad7d4480e5e0e9f7"
+        },
+        {
+          "path": ".gitignore",
+          "sha256": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97"
+        },
+        {
+          "path": "ARCHITECTURE.md",
+          "sha256": "8e8db0cd6d8284663dcb8a830d3b7d5a62dee108abdfbce7038683e5713ace62"
+        },
+        {
+          "path": "README.md",
+          "sha256": "978445d60be9e240b9c5bfc9f71836c6f35353cf9dcb110ae7059d9e9482bbd9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "4555d2db1e02604b3681e689b697d7a12879aba475bf3782d715299f2d8eced2"
+        },
+        {
+          "path": "log-entry.sh",
+          "sha256": "0793db06886c43da9909b380b59b0cb7406866c693a0de10da1ab748caa8e198"
+        },
+        {
+          "path": "ppt-tools/generate-deck.js",
+          "sha256": "387d4ab2be3bb0b023bbb6404abd856903c5fb0b94c3a6e9eec4875b995374a6"
+        },
+        {
+          "path": "ppt-tools/layouts.js",
+          "sha256": "55b7db6675707d90911a227fb09ea95008a3a5255ceb13c078e9a4684fc2b080"
+        },
+        {
+          "path": "ppt-tools/package-lock.json",
+          "sha256": "682652ab83ea75ceb815f10df229afd9f21724040f64d702fb89115553fa2940"
+        },
+        {
+          "path": "ppt-tools/package.json",
+          "sha256": "1a2658e83e1479621b679d17d82133c50fd58e87d7a68a2977a88d4a12f24b9f"
+        },
+        {
+          "path": "ppt-tools/test-layouts.js",
+          "sha256": "698f8db2a9e90fd326dfbfd154e4b9f39b28793fa9541d02375000afb2b7c449"
+        },
+        {
+          "path": "references/lark-slides/asset-planning.md",
+          "sha256": "0b7149b3e91f9f86e4488593db547f15ff322cdda5611d4de50316b2f3f33bcb"
+        },
+        {
+          "path": "references/lark-slides/examples.md",
+          "sha256": "3e465212249d8f7ec45460e009d3008aa3995824a82cc0840d81f37c9b333ff3"
+        },
+        {
+          "path": "references/lark-slides/lark-slides-create.md",
+          "sha256": "6c28e8afb6e58e1ace2ebe63afb1943865953a04e9749a51c521a3ab36438045"
+        },
+        {
+          "path": "references/lark-slides/lark-slides-edit-workflows.md",
+          "sha256": "45e597b23a5925a40ffd37212bdf898f5b61630e5a3b3104083bfcc2cae9f439"
+        },
+        {
+          "path": "references/lark-slides/lark-slides-media-upload.md",
+          "sha256": "f99aa38dcf61c99e06161b462c2ab76df71ee7629667404a4f175901a06606b8"
+        },
+        {
+          "path": "references/lark-slides/lark-slides-replace-slide.md",
+          "sha256": "4ee3ddd488512d77279c60b13157ac7a23c885a02d9a0e42d4e710fb896ce8a3"
+        },
+        {
+          "path": "references/lark-slides/planning-layer.md",
+          "sha256": "4b5998424d4b59b77b9028e455cec2ca8159b07fdef4dff5121b36bbd98147d0"
+        },
+        {
+          "path": "references/lark-slides/slides_demo.xml",
+          "sha256": "331ab7a90fb19a4d27b57a6bf1335dfb73081299d23346ba2888f7b6efd74859"
+        },
+        {
+          "path": "references/lark-slides/slides_xml_schema_definition.xml",
+          "sha256": "e457748005c83d1f636fc421982e8a142e3348c5d851b6472a8d6b4493073b83"
+        },
+        {
+          "path": "references/lark-slides/troubleshooting.md",
+          "sha256": "ece5b2a10c52bcc383a1b8d047bb07d76437e894be2512d92ac39d62b18524ec"
+        },
+        {
+          "path": "references/lark-slides/validation-checklist.md",
+          "sha256": "1e87eb73a6bc70c2fc5ce2d1eb6a92cda2c1a0ba55011bdc36b186453a11ca6b"
+        },
+        {
+          "path": "references/lark-slides/visual-planning.md",
+          "sha256": "7942ba4f297b25868554f39791f2d87382d2c02e505d2c6bf6d977fa8d546e53"
+        },
+        {
+          "path": "references/lark-slides/xml-format-guide.md",
+          "sha256": "ad31703280fa4c51c341dd2970eacefc971fe5301f2012dd984473d40614e59d"
+        },
+        {
+          "path": "references/lark-slides/xml-schema-quick-ref.md",
+          "sha256": "24ed1e837fafe121c90260dd55a0ecea96f3517cf42d974ac736afd7af90599e"
+        },
+        {
+          "path": "references/pp-diagnostic-handbook.md",
+          "sha256": "b88cc7e4e2e2184a6905e5c4518f48ca16954e11ddd021ad1752b3c910e65f9a"
+        },
+        {
+          "path": "requirements.txt",
+          "sha256": "11d6f9f5704424998bf7341e2741ed8969e79a2f581b001d7e455f8f731f217c"
+        },
+        {
+          "path": "setup.sh",
+          "sha256": "91a7357f143db26901ad0d895af9ceba9f26a88c60e3a7975af15ae928c737ed"
+        },
+        {
+          "path": "tests/test-prompts.md",
+          "sha256": "707f13727ce4ba90ff42eb453663741420c6b0a73c2904e8b314cc7746d5d2d8"
+        },
+        {
+          "path": "verify.sh",
+          "sha256": "b2b07b292444b1458a285c2cbafa6222e3be9703c3b083f44fc8a9f69309ba63"
+        }
+      ]
+    },
+    {
+      "name": "screenshot",
+      "path": "skills/screenshot",
+      "description": "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed.",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "081935a6a163277537d46365f49d6b4a3cb40b4748347e7e88759c5927fa8cf5"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "f29638eb930e27d44846474620b0d817b4b77fb5d09caf27db269463ae45cfa8"
+        },
+        {
+          "path": "assets/screenshot-small.svg",
+          "sha256": "b0ff24097dfcd889504fab312a0e20d1d79dde0745268647a8cc2471b4baf794"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "sha256": "4ff96a476f2a2ac4ca7b626f9d4b78a7aa8cce0219e0688c5f15355513b61b5b"
+        },
+        {
+          "path": "scripts/ensure_macos_permissions.sh",
+          "sha256": "9aa750f1e9592519d6c18b966fd65c1d4108c25bd3471ce625dfafd784856d7f"
+        },
+        {
+          "path": "scripts/macos_display_info.swift",
+          "sha256": "0969cfef9c9890c82cae5ad75a6cd40fd56d33b28f27347642ef5e837f18b042"
+        },
+        {
+          "path": "scripts/macos_permissions.swift",
+          "sha256": "cf110651350e50d600268f0a1a892ac8d662505474b4455cdfde2ac5b5f4aca6"
+        },
+        {
+          "path": "scripts/macos_window_info.swift",
+          "sha256": "c7faff7913d6072284b7ef1e5d26c524ab861ad32afc0c066f24ba95ae3f3597"
+        },
+        {
+          "path": "scripts/take_screenshot.ps1",
+          "sha256": "a31a2242e41fd1c5471651afbcced660f98fbc884f11e531218348f700a3f826"
+        },
+        {
+          "path": "scripts/take_screenshot.py",
+          "sha256": "56eeabe2dac5d23915b9a0fb57a07431fad2d310c5444f60f71f09299899232b"
+        }
+      ]
+    },
+    {
+      "name": "tencent-meeting-mcp",
+      "path": "skills/tencent-meeting-mcp",
+      "description": "腾讯会议：会议管理与音视频协作助手。预约/创建/修改/取消会议、查询会议详情与会议号转换、查看参会成员/受邀人/等候室成员、查询用户会议列表（即将开始/进行中/已结束）、查询录制列表与下载地址、获取转写全文/段落/搜索、获取AI智能纪要（支持多语言翻译）、时间转换与版本检查。当用户需要预约或管理腾讯会议、查看参会人员、查询会议录制或转写内容、获取智能纪要时使用；如果用户提供的是9位会议号而非meeting_id，优先使用get_meeting_by_code转换后再操作。不要在以下场景触发：日程管理（非腾讯会议日程）、即时通讯/聊天、腾讯文档操作、企业微信审批流程、电话/PSTN拨号、视频剪辑或视频编辑、其他视频会议平台（Zoom/Teams/飞书/钉钉）。",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "84f776063e0b0d4d97b7f1359ca92aa71f72161e9b399c0eabc9076eb28bec7b"
+        },
+        {
+          "path": "references/api_references.md",
+          "sha256": "46475557b13b1d33528e740d57e1e30879374728424605def585ea99028c1774"
+        },
+        {
+          "path": "references/error_dictionary.md",
+          "sha256": "3a258e4ad4c1b3d1f3d95f98be6f49a152af1f4715e05d949a6708384e7e43a4"
+        },
+        {
+          "path": "references/version_management.md",
+          "sha256": "2ebbc945cfca214b0d5de19f6a4da714f7825e9fcb40e1dda2b588ff9b2cdf97"
+        },
+        {
+          "path": "scripts/mcp_proxy.py",
+          "sha256": "f7513dbac547a63346b4c7515057da8deff7ebafd09813424aec6a5a45dc8134"
+        },
+        {
+          "path": "scripts/tencent_meeting.py",
+          "sha256": "b359fc0f06defb72e67abd38e0559002660431d1e234f387c11ff2939f0dc898"
+        },
+        {
+          "path": "scripts/utils.py",
+          "sha256": "d23fa6098f9e1046ab9f514d6f67b498f37f5f194ebd8fb099f7bfb1375580ad"
+        }
+      ]
+    },
+    {
+      "name": "topiclab-public-page-workflow",
+      "path": "skills/topiclab-public-page-workflow",
+      "description": "Use when changing agent-topic-lab public Chinese pages, TaShan/TopicLab routes, nav/home entries, form-data walls, privacy-gated details, WeChat QR/footer contact flows, or visible site copy.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "269b51b284d64ea6f121f149a5007816b732f0165edeb051cbc25c9e36a58773"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "e714f7ea2704dd35d7add401bfdcd962084abaefb15d802ad304004c1cf7273c"
+        }
+      ]
+    },
+    {
+      "name": "vercel-deploy",
+      "path": "skills/vercel-deploy",
+      "description": "Deploy applications and websites to Vercel. Use when the user requests deployment actions like \"deploy my app\", \"deploy and give me the link\", \"push this live\", or \"create a preview deployment\".",
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "e0fad1e120e56b02bb8e65745ff5be6d3234368f2df9d0dd183183879e595fc1"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "f4a6cbfbb378a320fae179a79f727a881d19677e9b3db96ed49d2dc02a74fa46"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "5fdfff98a8cd084737f47231d65e7b8315e9036e12c8f2c90df7593f75abcf74"
+        },
+        {
+          "path": "assets/vercel-small.svg",
+          "sha256": "169e5fedb5898d756254c29e02873508eef714a8dd11638f283ca8e7c46096a5"
+        },
+        {
+          "path": "assets/vercel.png",
+          "sha256": "ab37ffb06bdb1ab6d076c26329e8677d057ba95d66f7e2c710221345ff6e2043"
+        },
+        {
+          "path": "scripts/deploy.sh",
+          "sha256": "91f16c6a298c8b70eff7b7722f860e54101be2f23cea75d2e26ec0778006f9b4"
+        }
+      ]
+    },
+    {
+      "name": "xhs-tech-publishing",
+      "path": "skills/xhs-tech-publishing",
+      "description": "Use when preparing Chinese technical Xiaohongshu posts, image-text notes, 3:4 infographics, topic subdirectories, Creator-platform drafts, or AI hardware explainer content under ~/Documents/xhs.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "1733cdd05a331bcd12d45d3599d3a4b5c7e833df1dabc61b3525cf5e14561549"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "db1651b71a7fdb5be0c5fae31cf44deac862c858feb8a6bc7453c450e4187b46"
+        }
+      ]
+    },
+    {
+      "name": "zhiye-job-scraping",
+      "path": "skills/zhiye-job-scraping",
+      "description": "Use when extracting job postings from BeiSen/Zhiye recruitment portals such as *.zhiye.com/jobs, campus hiring pages, internship lists, or pages backed by /api/Jobad/GetJobAdPageList.",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "ea8866548744f18906fc4a403a2c43646a4122b6b34b56a7588b455694fcb664"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sha256": "3811c537fdfaef04c1694a09f8208f5ead9f0faea153674c119025d9c5fc51ec"
+        },
+        {
+          "path": "scripts/scrape_zhiye_jobs.py",
+          "sha256": "f131e690a67bc4daeedb8855f653e3d436b43ce40c90c01e6200e1cc9e0c7493"
+        }
+      ]
+    }
+  ]
+}

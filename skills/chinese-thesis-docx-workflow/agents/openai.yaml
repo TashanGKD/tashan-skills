@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文学位报告 DOCX 工作流"
+  short_description: "中文开题报告与学位论文DOCX修订引用图表版本流程管理"
+  default_prompt: "Use $chinese-thesis-docx-workflow to revise a Chinese thesis proposal DOCX with versioning, citations, figures, and review records."

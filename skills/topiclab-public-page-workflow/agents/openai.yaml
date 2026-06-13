@@ -1,0 +1,4 @@
+interface:
+  display_name: "TopicLab Public Page Workflow"
+  short_description: "Change TopicLab public pages with route, privacy, copy, and verification checks."
+  default_prompt: "Use this skill for agent-topic-lab public page, nav, form wall, or footer contact changes."

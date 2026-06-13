@@ -1,0 +1,4 @@
+interface:
+  display_name: "BP Deck Visual Workflow"
+  short_description: "Create and verify minimal BP/PPT/WPS visual assets from the deck story."
+  default_prompt: "Use this skill to refine a BP deck background, concept visual, or WPS slide asset."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Desktop Cache Cleanup"
+  short_description: "Preview, clean, and measure macOS Docker/tool-cache disk usage safely."
+  default_prompt: "Use this skill to rerun the desktop cache cleanup workflow with before/after accounting."
