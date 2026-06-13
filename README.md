@@ -8,6 +8,7 @@ Shared Codex skills used by the TashanGKD workspace.
 skills/<owner>/<skill>/  # Installable skill folders grouped by contributor
 catalog/skills.json      # Generated skill catalog
 docs/agent-upload-guide.md
+scripts/organize_skills.py
 scripts/sync_local_skills.py
 scripts/validate_skills.py
 ```
@@ -52,6 +53,8 @@ cp -R skills/<owner>/* ~/.codex/skills/
 python3 scripts/validate_skills.py
 ```
 
+Validation checks the owner-scoped directory layout, `SKILL.md` frontmatter, duplicate names inside one owner, basic secret patterns, and whether `catalog/skills.json` is up to date.
+
 ## Sync From A Local Codex Skills Directory
 
 For maintainers:
@@ -62,6 +65,13 @@ python3 scripts/validate_skills.py
 ```
 
 The sync script excludes local caches, nested git repos, `node_modules`, private config files, and known backup/system folders. It also redacts obvious hard-coded API keys and tokens.
+
+If skills were manually copied to the wrong root-level location, organize them into an owner directory:
+
+```bash
+python3 scripts/organize_skills.py --owner <your-name>
+python3 scripts/validate_skills.py
+```
 
 `skills/zeruifang/pre-pp` is maintained as a git submodule because it is an independent, larger workflow project.
 

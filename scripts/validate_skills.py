@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -66,6 +67,17 @@ def scan_secrets(path: Path) -> list[str]:
     return hits
 
 
+def file_hashes(skill_dir: Path) -> list[dict[str, str]]:
+    rows = []
+    for path in sorted(skill_dir.rglob("*")):
+        if path.is_file():
+            rows.append({
+                "path": str(path.relative_to(skill_dir)),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            })
+    return rows
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--skills", type=Path, default=Path("skills"))
@@ -74,8 +86,12 @@ def main() -> int:
 
     errors: list[str] = []
     names_by_owner: dict[str, list[str]] = {}
+    catalog_entries: list[dict[str, object]] = []
     for owner_dir in sorted(args.skills.iterdir() if args.skills.exists() else []):
         if not owner_dir.is_dir():
+            continue
+        if (owner_dir / "SKILL.md").exists():
+            errors.append(f"{owner_dir}: skill is directly under skills/; move it to skills/<owner>/{owner_dir.name}")
             continue
         owner = owner_dir.name
         if not NAME_RE.match(owner):
@@ -103,6 +119,13 @@ def main() -> int:
             if len(desc) < 40:
                 errors.append(f"{skill_md}: description too short")
             owner_names.append(name)
+            catalog_entries.append({
+                "owner": owner,
+                "name": name,
+                "path": f"skills/{owner}/{skill_dir.name}",
+                "description": desc,
+                "files": file_hashes(skill_dir),
+            })
         names_by_owner[owner] = owner_names
     for owner, names in names_by_owner.items():
         if len(names) != len(set(names)):
@@ -110,7 +133,10 @@ def main() -> int:
     errors.extend(scan_secrets(args.skills))
 
     if args.catalog.exists():
-        json.loads(args.catalog.read_text(encoding="utf-8"))
+        catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
+        expected_catalog = {"skills": catalog_entries}
+        if catalog != expected_catalog:
+            errors.append(f"{args.catalog}: out of date; run scripts/sync_local_skills.py or scripts/organize_skills.py")
     else:
         errors.append(f"{args.catalog}: missing")
 

@@ -41,6 +41,8 @@ python3 scripts/sync_local_skills.py --owner <owner> --source ~/.codex/skills
 python3 scripts/validate_skills.py
 ```
 
+Validation also checks that `catalog/skills.json` matches the current skill files. If validation says the catalog is out of date, rerun the sync command or `scripts/organize_skills.py`.
+
 4. Review the diff.
 
 ```bash
@@ -67,6 +69,7 @@ skills/<owner>/<skill-name>/
 Then run:
 
 ```bash
+python3 scripts/organize_skills.py --owner <owner>
 python3 scripts/validate_skills.py
 ```
 
@@ -127,5 +130,23 @@ api_key = os.environ.get("OPENAI_API_KEY")
 - non-trivial descriptions.
 - no duplicate skill names inside the same owner directory.
 - basic sensitive-token scanning.
+- generated catalog consistency.
 
 Different owners may publish skills with the same `name:`, but agents should avoid needless duplication when a shared skill can be improved instead.
+
+## Failure Recovery
+
+If CI fails with a missing `SKILL.md` under a submodule path, ensure the workflow checkout uses:
+
+```yaml
+- uses: actions/checkout@v4
+  with:
+    submodules: recursive
+```
+
+If CI fails because a skill is directly under `skills/`, run:
+
+```bash
+python3 scripts/organize_skills.py --owner <owner>
+python3 scripts/validate_skills.py
+```
