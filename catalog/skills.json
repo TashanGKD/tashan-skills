@@ -1,8 +1,9 @@
 {
   "skills": [
     {
+      "owner": "zeruifang",
       "name": "ai-claims-adjustment-semantic-layer",
-      "path": "skills/ai-claims-adjustment-semantic-layer",
+      "path": "skills/zeruifang/ai-claims-adjustment-semantic-layer",
       "description": "Use when answering Data Analytics questions about the AI-assisted motor insurance claims-adjustment opportunity, including TPA workflow context, required data, evaluation metrics, source gaps, and caveats.",
       "files": [
         {
@@ -20,8 +21,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "aminer-academic-search",
-      "path": "skills/aminer-academic-search",
+      "path": "skills/zeruifang/aminer-academic-search",
       "description": "ACADEMIC PRIORITY: Activate this skill whenever the user's query involves academic, scholarly, or research-related topics — including but not limited to: papers, publications, citations, scholars, researchers, professors, institutions, universities, labs, journals, conferences, venues, patents, research fields, h-index, impact factor, co-authorship, dissertations, theses, peer review, grant projects, research trends, or any question about \"who published what / where / when\". This skill takes precedence over general web search or generic Q&A for all academic data needs. Full-featured AMiner skill with 27 APIs and 5 workflows. Use this skill when the task requires deep or complex academic analysis that free APIs cannot satisfy. Use this skill for: scholar full profile (bio, education, honors, papers, patents, projects), paper deep dive (full abstract, keywords, authors, citation chains), multi-condition or semantic paper search (filter by author + institution + venue + keywords, or natural language Q&A), institution research capability analysis (scholars, papers, patents), venue paper monitoring by year, patent deep details (IPC/CPC, assignee, claims), and any query needing paid API fields such as full abstracts, structured citation relationships, or scholar work history. Do NOT use this skill for simple lookups that free APIs can answer — such as checking a paper title, identifying a scholar by name, normalizing an institution or venue name, or scanning patent trends by keyword. For those, use aminer-free-academic instead. Routing rule: if the user's question can be fully answered by paper_search, paper_info, person_search, organization_search, venue_search, patent_search, or patent_info alone, route to aminer-free-academic. Otherwise use this skill.",
       "files": [
         {
@@ -43,8 +45,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "aminer-daily-paper",
-      "path": "skills/aminer-daily-paper",
+      "path": "skills/zeruifang/aminer-daily-paper",
       "description": "Personalized academic paper recommendation via AMiner rec5 API. Activate this skill whenever the user asks for paper recommendations, whether triggered by /aminer-dp, /skill aminer-dp, or any natural language request such as 'recommend me papers on multimodal agents'. When invoked: extract topics/scholar signals from the input yourself, call handle_trigger.py with structured fields, then present the Markdown in `reply_text` to the user.",
       "files": [
         {
@@ -94,8 +97,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "aminer-deep-search",
-      "path": "skills/aminer-deep-search",
+      "path": "skills/zeruifang/aminer-deep-search",
       "description": "Activate this skill when the user wants deep, multi-round academic paper collection for a survey or literature review using AMiner data and a ReAct-style LLM controller. Use this skill for broad topic exploration, survey bibliography construction, automatic keyword search plus backward-reference snowballing, and collecting hundreds of candidate papers with AMiner IDs and titles. This skill calls an OpenAI-compatible chat model to decide tool calls, and uses AMiner keyword search plus paper reference APIs as tools. It is not intended for simple single-paper lookup or lightweight recommendations; use aminer-free-academic or aminer-daily-paper for those simpler tasks.",
       "files": [
         {
@@ -145,8 +149,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "aminer-free-academic",
-      "path": "skills/aminer-free-academic",
+      "path": "skills/zeruifang/aminer-free-academic",
       "description": "ACADEMIC PRIORITY: Activate this skill whenever the user's query involves any academic or research-related topic. This is the free-tier entry point for AMiner academic search. Free-tier-only AMiner skill (7 free APIs, zero cost). Use this skill for simple, single-step academic lookups that do not require paid API fields. Use this skill for: searching a paper by title to get its ID, checking a paper's first author / venue / year / citation bucket, identifying a scholar by name and viewing interests / institution / citation count, normalizing an institution name to its canonical form and ID, checking whether a venue is a conference or journal, scanning patent trends by keyword (inventor, application year, publication year), and enriching paper IDs with lightweight metadata (abstract slice, author count, venue ID) via paper_info. Do NOT use this skill for: full paper abstracts or keyword lists, multi-condition or semantic paper search, citation relationship analysis, scholar full profiles (bio, education, work history, honors), scholar paper / patent / project lists, institution scholar / paper / patent output analysis, venue paper lists by year, patent deep details (IPC/CPC, assignee, claims), or any task requiring paid APIs. Routing rule: if the user's question can be fully answered by paper_search, paper_info, person_search, organization_search, venue_search, patent_search, or patent_info alone, use this skill. Otherwise route to aminer-academic-search.",
       "files": [
         {
@@ -164,8 +169,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "aminer-pdf-citation-verifier",
-      "path": "skills/aminer-pdf-citation-verifier",
+      "path": "skills/zeruifang/aminer-pdf-citation-verifier",
       "description": "[Activation] Use this skill when the user provides a paper PDF (file path or upload) and asks to verify, audit, or fact-check its references / citations / bibliography — e.g. \"check whether the references in this PDF are hallucinated\", \"find fake citations\", \"verify the bibliography\". [Capability] Uploads the PDF to the AMiner pdf-citation-verifier service, polls the asynchronous job, and returns a per-reference classification (REAL / LIKELY_REAL / NEEDS_REVIEW / LIKELY_FAKE / FAKE) plus an overall hallucination summary. [Routing] Do NOT use for general paper search, scholar lookup, citation-intent analysis, or building a citation graph — use aminer-academic-search, aminer-free-academic, or paper-source-trace instead. This skill only verifies whether references actually exist.",
       "files": [
         {
@@ -191,8 +197,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "bp-deck-visual-workflow",
-      "path": "skills/bp-deck-visual-workflow",
+      "path": "skills/zeruifang/bp-deck-visual-workflow",
       "description": "Use when creating or refining BP/PPT/WPS visual assets, slide backgrounds, Chinese concept graphics, slide-master assets, or layout-flexible presentation imagery in ~/Documents/bp.",
       "files": [
         {
@@ -206,8 +213,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "chinese-thesis-docx-workflow",
-      "path": "skills/chinese-thesis-docx-workflow",
+      "path": "skills/zeruifang/chinese-thesis-docx-workflow",
       "description": "Use when working on Chinese thesis, proposal, opening-report, dissertation, academic-review, or Word DOCX workflows that require structured academic writing, iterative versioned editing, citation renumbering, reference cleanup, figure/table captions, technical-route diagrams, defense-review records, supervisor/group comments, or formatting/logic cleanup. Especially use for `.docx` files, Chinese graduate reports, 开题报告, 学位论文, 考核记录, 导师意见, 小组意见, and bibliography/order normalization.",
       "files": [
         {
@@ -261,8 +269,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "chronicle",
-      "path": "skills/chronicle",
+      "path": "skills/zeruifang/chronicle",
       "description": "Allows you to view the user's screen as well as several hours of history. Use when the user makes a reference to their recent work, for which it'd be helpful to see the screen. This skill MUST be used whenever you need to resolve ambiguity in a user request, where the user hasn't specified enough context to do the task. Examples include disambiguating the specific user/app/document/error the user is referring to. You must also use this skill if the user asks about any question regarding Chronicle or asks what you can see from the screen.",
       "files": [
         {
@@ -272,8 +281,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "desktop-cache-cleanup",
-      "path": "skills/desktop-cache-cleanup",
+      "path": "skills/zeruifang/desktop-cache-cleanup",
       "description": "Use when cleaning macOS workspace disk caches, Docker build cache, package-manager caches, Feishu storage, or rerunning the user's weekly cache cleanup workflow on ~/Desktop/workspace.",
       "files": [
         {
@@ -287,8 +297,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "doc",
-      "path": "skills/doc",
+      "path": "skills/zeruifang/doc",
       "description": "Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks.",
       "files": [
         {
@@ -318,8 +329,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "frontend-skill",
-      "path": "skills/frontend-skill",
+      "path": "skills/zeruifang/frontend-skill",
       "description": "Use when the task asks for a visually strong landing page, website, app, prototype, demo, or game UI. This skill enforces restrained composition, image-led hierarchy, cohesive content structure, and tasteful motion while avoiding generic cards, weak branding, and UI clutter.",
       "files": [
         {
@@ -337,8 +349,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "hatch-pet",
-      "path": "skills/hatch-pet",
+      "path": "skills/zeruifang/hatch-pet",
       "description": "Create, repair, validate, preview, and package Codex-compatible animated pets and pet spritesheets from character art, screenshots, generated images, or visual references. Use when a user wants to hatch a Codex pet, create a custom animated pet, or build a built-in pet asset with an 8x9 atlas, transparent unused cells, row-by-row animation prompts, QA contact sheets, preview videos, and pet.json packaging. This skill composes the installed $imagegen system skill for visual generation and uses bundled scripts for deterministic spritesheet assembly.",
       "files": [
         {
@@ -428,8 +441,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "imagegen",
-      "path": "skills/imagegen",
+      "path": "skills/zeruifang/imagegen",
       "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
       "files": [
         {
@@ -479,8 +493,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "memsagent-paper-workflow",
-      "path": "skills/memsagent-paper-workflow",
+      "path": "skills/zeruifang/memsagent-paper-workflow",
       "description": "Use when drafting, editing, or compiling the MEMSAgent IEEE Sensors Journal manuscript, bilingual article.md content, paper/main.tex, references.bib, Related Work structure, or Tectonic build workflow.",
       "files": [
         {
@@ -494,8 +509,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "openai-docs",
-      "path": "skills/openai-docs",
+      "path": "skills/zeruifang/openai-docs",
       "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
       "files": [
         {
@@ -521,8 +537,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "paper-source-trace",
-      "path": "skills/paper-source-trace",
+      "path": "skills/zeruifang/paper-source-trace",
       "description": "Use when a user provides an academic paper PDF, extracted paper text, citation contexts, or references and asks for paper source tracing, claim-centered source tracing, citation intent extraction, entity/relation extraction, contribution mapping, citation graph JSON, SVG/HTML citation maps, or optional AMiner metadata/citation enrichment. Do NOT use this skill for simple paper lookup by title, scholar search, or lightweight academic queries — use aminer-free-academic or aminer-academic-search for those instead.",
       "files": [
         {
@@ -580,8 +597,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "pdf",
-      "path": "skills/pdf",
+      "path": "skills/zeruifang/pdf",
       "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction.",
       "files": [
         {
@@ -603,8 +621,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "playwright",
-      "path": "skills/playwright",
+      "path": "skills/zeruifang/playwright",
       "description": "Use when the task requires automating a real browser from the terminal (navigation, form filling, snapshots, screenshots, data extraction, UI-flow debugging) via `playwright-cli` or the bundled wrapper script.",
       "files": [
         {
@@ -646,8 +665,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "playwright-interactive",
-      "path": "skills/playwright-interactive",
+      "path": "skills/zeruifang/playwright-interactive",
       "description": "Persistent browser and Electron interaction through `js_repl` for fast iterative UI debugging.",
       "files": [
         {
@@ -677,13 +697,14 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "pre-pp",
-      "path": "skills/pre-pp",
+      "path": "skills/zeruifang/pre-pp",
       "description": "Pre Pitch Practice — 路演PPT迭代助手 在正式 PP 评估之前，帮助创始人从零到一制作/迭代路演 deck。 支持：大纲生成、PPT 制作（飞书Slides/PDF/PPTX/HTML）、逐页打磨、视觉优化。 默认输出飞书 Slides（云端渲染，字体无忧，在线协作）。 当用户提到\"做PPT\"、\"改PPT\"、\"迭代deck\"、\"准备路演材料\"、\"pre PP\"时触发。",
       "files": [
         {
           "path": ".git",
-          "sha256": "fa0a77a34f250b4758162a363fbaf2291d816f72332b56ecad7d4480e5e0e9f7"
+          "sha256": "669af7baeae8ce5ddba93fb65d767dd82d2627ce7407717167d50a8560171145"
         },
         {
           "path": ".gitignore",
@@ -804,8 +825,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "screenshot",
-      "path": "skills/screenshot",
+      "path": "skills/zeruifang/screenshot",
       "description": "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed.",
       "files": [
         {
@@ -855,8 +877,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "tencent-meeting-mcp",
-      "path": "skills/tencent-meeting-mcp",
+      "path": "skills/zeruifang/tencent-meeting-mcp",
       "description": "腾讯会议：会议管理与音视频协作助手。预约/创建/修改/取消会议、查询会议详情与会议号转换、查看参会成员/受邀人/等候室成员、查询用户会议列表（即将开始/进行中/已结束）、查询录制列表与下载地址、获取转写全文/段落/搜索、获取AI智能纪要（支持多语言翻译）、时间转换与版本检查。当用户需要预约或管理腾讯会议、查看参会人员、查询会议录制或转写内容、获取智能纪要时使用；如果用户提供的是9位会议号而非meeting_id，优先使用get_meeting_by_code转换后再操作。不要在以下场景触发：日程管理（非腾讯会议日程）、即时通讯/聊天、腾讯文档操作、企业微信审批流程、电话/PSTN拨号、视频剪辑或视频编辑、其他视频会议平台（Zoom/Teams/飞书/钉钉）。",
       "files": [
         {
@@ -890,8 +913,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "topiclab-public-page-workflow",
-      "path": "skills/topiclab-public-page-workflow",
+      "path": "skills/zeruifang/topiclab-public-page-workflow",
       "description": "Use when changing agent-topic-lab public Chinese pages, TaShan/TopicLab routes, nav/home entries, form-data walls, privacy-gated details, WeChat QR/footer contact flows, or visible site copy.",
       "files": [
         {
@@ -905,8 +929,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "vercel-deploy",
-      "path": "skills/vercel-deploy",
+      "path": "skills/zeruifang/vercel-deploy",
       "description": "Deploy applications and websites to Vercel. Use when the user requests deployment actions like \"deploy my app\", \"deploy and give me the link\", \"push this live\", or \"create a preview deployment\".",
       "files": [
         {
@@ -936,8 +961,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "xhs-tech-publishing",
-      "path": "skills/xhs-tech-publishing",
+      "path": "skills/zeruifang/xhs-tech-publishing",
       "description": "Use when preparing Chinese technical Xiaohongshu posts, image-text notes, 3:4 infographics, topic subdirectories, Creator-platform drafts, or AI hardware explainer content under ~/Documents/xhs.",
       "files": [
         {
@@ -951,8 +977,9 @@
       ]
     },
     {
+      "owner": "zeruifang",
       "name": "zhiye-job-scraping",
-      "path": "skills/zhiye-job-scraping",
+      "path": "skills/zeruifang/zhiye-job-scraping",
       "description": "Use when extracting job postings from BeiSen/Zhiye recruitment portals such as *.zhiye.com/jobs, campus hiring pages, internship lists, or pages backed by /api/Jobad/GetJobAdPageList.",
       "files": [
         {

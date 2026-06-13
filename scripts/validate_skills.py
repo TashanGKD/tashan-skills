@@ -73,30 +73,40 @@ def main() -> int:
     args = parser.parse_args()
 
     errors: list[str] = []
-    names: list[str] = []
-    for skill_dir in sorted(args.skills.iterdir() if args.skills.exists() else []):
-        if not skill_dir.is_dir():
+    names_by_owner: dict[str, list[str]] = {}
+    for owner_dir in sorted(args.skills.iterdir() if args.skills.exists() else []):
+        if not owner_dir.is_dir():
             continue
-        skill_md = skill_dir / "SKILL.md"
-        if not skill_md.exists():
-            errors.append(f"{skill_dir}: missing SKILL.md")
+        owner = owner_dir.name
+        if not NAME_RE.match(owner):
+            errors.append(f"{owner_dir}: invalid owner directory name")
             continue
-        try:
-            meta = parse_frontmatter(skill_md)
-        except ValueError as exc:
-            errors.append(f"{skill_md}: {exc}")
-            continue
-        name = meta.get("name", "")
-        desc = meta.get("description", "")
-        if not NAME_RE.match(name):
-            errors.append(f"{skill_md}: invalid name {name!r}")
-        if name != skill_dir.name:
-            errors.append(f"{skill_md}: name does not match folder {skill_dir.name!r}")
-        if len(desc) < 40:
-            errors.append(f"{skill_md}: description too short")
-        names.append(name)
-    if len(names) != len(set(names)):
-        errors.append("duplicate skill names")
+        owner_names: list[str] = []
+        for skill_dir in sorted(owner_dir.iterdir()):
+            if not skill_dir.is_dir():
+                continue
+            skill_md = skill_dir / "SKILL.md"
+            if not skill_md.exists():
+                errors.append(f"{skill_dir}: missing SKILL.md")
+                continue
+            try:
+                meta = parse_frontmatter(skill_md)
+            except ValueError as exc:
+                errors.append(f"{skill_md}: {exc}")
+                continue
+            name = meta.get("name", "")
+            desc = meta.get("description", "")
+            if not NAME_RE.match(name):
+                errors.append(f"{skill_md}: invalid name {name!r}")
+            if name != skill_dir.name:
+                errors.append(f"{skill_md}: name does not match folder {skill_dir.name!r}")
+            if len(desc) < 40:
+                errors.append(f"{skill_md}: description too short")
+            owner_names.append(name)
+        names_by_owner[owner] = owner_names
+    for owner, names in names_by_owner.items():
+        if len(names) != len(set(names)):
+            errors.append(f"{owner}: duplicate skill names")
     errors.extend(scan_secrets(args.skills))
 
     if args.catalog.exists():
@@ -109,7 +119,8 @@ def main() -> int:
         for error in errors:
             print("-", error)
         return 1
-    print(f"VALIDATION OK: {len(names)} skills")
+    count = sum(len(names) for names in names_by_owner.values())
+    print(f"VALIDATION OK: {count} skills across {len(names_by_owner)} owners")
     return 0
 
 

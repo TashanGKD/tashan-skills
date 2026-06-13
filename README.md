@@ -5,8 +5,9 @@ Shared Codex skills used by the TashanGKD workspace.
 ## Repository Layout
 
 ```text
-skills/                  # Installable skill folders
+skills/<owner>/<skill>/  # Installable skill folders grouped by contributor
 catalog/skills.json      # Generated skill catalog
+docs/agent-upload-guide.md
 scripts/sync_local_skills.py
 scripts/validate_skills.py
 ```
@@ -36,13 +37,13 @@ git submodule update --init --recursive
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R skills/<skill-name> ~/.codex/skills/
+cp -R skills/<owner>/<skill-name> ~/.codex/skills/
 ```
 
-To install all published skills:
+To install all skills from one contributor:
 
 ```bash
-cp -R skills/* ~/.codex/skills/
+cp -R skills/<owner>/* ~/.codex/skills/
 ```
 
 ## Validate
@@ -56,14 +57,14 @@ python3 scripts/validate_skills.py
 For maintainers:
 
 ```bash
-python3 scripts/sync_local_skills.py --source ~/.codex/skills --target skills --catalog catalog/skills.json
+python3 scripts/sync_local_skills.py --owner <your-name> --source ~/.codex/skills --target skills --catalog catalog/skills.json
 python3 scripts/validate_skills.py
 ```
 
 The sync script excludes local caches, nested git repos, `node_modules`, private config files, and known backup/system folders. It also redacts obvious hard-coded API keys and tokens.
 
-`skills/pre-pp` is maintained as a git submodule because it is an independent, larger workflow project.
+`skills/zeruifang/pre-pp` is maintained as a git submodule because it is an independent, larger workflow project.
 
 ## Contribution Model
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md). Agents that upload skills should follow [docs/agent-upload-guide.md](docs/agent-upload-guide.md).

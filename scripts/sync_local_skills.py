@@ -142,19 +142,24 @@ def file_hashes(skill_dir: Path) -> list[dict[str, str]]:
 
 def build_catalog(target: Path, catalog_path: Path) -> None:
     skills = []
-    for skill_dir in sorted(target.iterdir()):
-        if not skill_dir.is_dir():
+    for owner_dir in sorted(target.iterdir()):
+        if not owner_dir.is_dir():
             continue
-        skill_md = skill_dir / "SKILL.md"
-        if not skill_md.exists():
-            continue
-        meta = parse_frontmatter(skill_md)
-        skills.append({
-            "name": meta.get("name", skill_dir.name),
-            "path": f"skills/{skill_dir.name}",
-            "description": meta.get("description", ""),
-            "files": file_hashes(skill_dir),
-        })
+        owner = owner_dir.name
+        for skill_dir in sorted(owner_dir.iterdir()):
+            if not skill_dir.is_dir():
+                continue
+            skill_md = skill_dir / "SKILL.md"
+            if not skill_md.exists():
+                continue
+            meta = parse_frontmatter(skill_md)
+            skills.append({
+                "owner": owner,
+                "name": meta.get("name", skill_dir.name),
+                "path": f"skills/{owner}/{skill_dir.name}",
+                "description": meta.get("description", ""),
+                "files": file_hashes(skill_dir),
+            })
     catalog_path.parent.mkdir(parents=True, exist_ok=True)
     catalog_path.write_text(json.dumps({"skills": skills}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -163,10 +168,15 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", type=Path, default=Path.home() / ".codex" / "skills")
     parser.add_argument("--target", type=Path, default=Path("skills"))
+    parser.add_argument("--owner", default=os.environ.get("TASHAN_SKILL_OWNER") or os.environ.get("USER"))
     parser.add_argument("--catalog", type=Path, default=Path("catalog/skills.json"))
     args = parser.parse_args()
 
-    args.target.mkdir(parents=True, exist_ok=True)
+    if not args.owner or not re.fullmatch(r"[a-z0-9-]+", args.owner):
+        raise SystemExit("--owner must use lowercase letters, digits, and hyphens only")
+
+    owner_target = args.target / args.owner
+    owner_target.mkdir(parents=True, exist_ok=True)
     for skill in sorted(args.source.iterdir()):
         if not skill.is_dir() or should_skip_dir(skill):
             continue
@@ -174,8 +184,8 @@ def main() -> int:
             continue
         meta = parse_frontmatter(skill / "SKILL.md")
         publish_name = meta.get("name", skill.name)
-        copy_skill(skill, args.target / publish_name)
-        print("synced", skill.name, "->", publish_name)
+        copy_skill(skill, owner_target / publish_name)
+        print("synced", skill.name, "->", f"{args.owner}/{publish_name}")
     build_catalog(args.target, args.catalog)
     print("catalog", args.catalog)
     return 0
