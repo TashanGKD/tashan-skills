@@ -703,10 +703,6 @@
       "description": "Pre Pitch Practice — 路演PPT迭代助手 在正式 PP 评估之前，帮助创始人从零到一制作/迭代路演 deck。 支持：大纲生成、PPT 制作（飞书Slides/PDF/PPTX/HTML）、逐页打磨、视觉优化。 默认输出飞书 Slides（云端渲染，字体无忧，在线协作）。 当用户提到\"做PPT\"、\"改PPT\"、\"迭代deck\"、\"准备路演材料\"、\"pre PP\"时触发。",
       "files": [
         {
-          "path": ".git",
-          "sha256": "669af7baeae8ce5ddba93fb65d767dd82d2627ce7407717167d50a8560171145"
-        },
-        {
           "path": ".gitignore",
           "sha256": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97"
         },

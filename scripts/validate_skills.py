@@ -70,6 +70,8 @@ def scan_secrets(path: Path) -> list[str]:
 def file_hashes(skill_dir: Path) -> list[dict[str, str]]:
     rows = []
     for path in sorted(skill_dir.rglob("*")):
+        if ".git" in path.relative_to(skill_dir).parts:
+            continue
         if path.is_file():
             rows.append({
                 "path": str(path.relative_to(skill_dir)),
