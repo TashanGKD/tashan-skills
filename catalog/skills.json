@@ -1,6 +1,46 @@
 {
   "skills": [
     {
+      "owner": "tashan",
+      "name": "cognitive-profile",
+      "path": "skills/tashan/cognitive-profile",
+      "description": "在对话里慢慢形成一份可修正的用户画像。用于用户要求建立、查看、更新画像， 希望回答更贴合自己，或反复纠正\"不像我\"\"太官方\"\"理解错了\"的场景。 也用于用户说\"记住\"\"以后默认\"\"按我之前习惯\"\"别再这样\"\"不要记录\" \"删掉\"\"恢复画像\"\"你记了什么\"\"你忘了\"，或普通任务里需要沿用已知偏好的场景。 只记录会影响后续回答的偏好、判断习惯、表达边界和待确认的地方。",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "5f58409d02be230d7eeb4c35754c9ae0f5d0ee4586bb1cf7563271a928da6a14"
+        },
+        {
+          "path": "references/召回问答.md",
+          "sha256": "500b81e3ff0f5e786fe21aa765ff226499d59191fbcbb741827ef3c05f0bb3d9"
+        },
+        {
+          "path": "references/形成画像.md",
+          "sha256": "59e7f3a6f478c0a5c0e73d6a52c887b11b4ea55ffcec4afcb62efe48f2666ab1"
+        },
+        {
+          "path": "references/校准整理.md",
+          "sha256": "8398d23df85a5dcdb1fa1776267c73a3d4470e87a09233cff5dbfe6fdf1917ca"
+        },
+        {
+          "path": "references/采集证据.md",
+          "sha256": "69dc70b0de2938255ecc2d4d7daa9accdc1d24c960cccb9b924a3c14992ace8c"
+        }
+      ]
+    },
+    {
+      "owner": "tashan",
+      "name": "scientific-humanization",
+      "path": "skills/tashan/scientific-humanization",
+      "description": "用于中文科研文本的 scientific humanization：把论文、综述、基金、项目书、技术方案、答辩、课程讲稿、PPT讲稿和投资人科研表达改得更像专业作者或讲师本人在说，同时保护事实、术语、数字、引用、图表编号和证据强度。适用于用户说“别AI味”“人一点”“别太官方”“像我讲的”“去模板腔”“改顺但别改事实”的场景。",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "71bf42841520203becd691f6cee340b9b7f2dc8858d04016d608e05075303274"
+        }
+      ]
+    },
+    {
       "owner": "zeruifang",
       "name": "ai-claims-adjustment-semantic-layer",
       "path": "skills/zeruifang/ai-claims-adjustment-semantic-layer",
